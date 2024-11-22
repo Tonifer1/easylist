@@ -1,0 +1,29 @@
+# Virtuaaliympäristö
+venv/
+
+# Django-migraatiot
+*.pyc
+__pycache__/
+
+# Lokitiedostot
+*.log
+
+# Testitiedot ja väliaikaiset tiedostot
+*.sqlite3
+*.tmp
+
+# Media- ja staattiset tiedostot
+media/
+static/
+
+# PyCharmin ja VS Coden projektitiedostot
+.idea/
+.vscode/
+
+# Käyttöjärjestelmätiedostot
+.DS_Store
+Thumbs.db
+
+# Järjestelmän tiedostot
+*.bak
+*.swp
