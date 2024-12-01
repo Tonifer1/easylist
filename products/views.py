@@ -2,6 +2,7 @@ from rest_framework.viewsets import ModelViewSet
  # tuodaan viewset Django rest frameworkista, joka tarjoaa valmiita näkymäsettejä
 from .models import Product # tuodaan Product malli
 from .serializers import ProductSerializer # tuodaan ProductSerializer sarjoitin
+from rest_framework.permissions import IsAuthenticated  # Tuodaan IsAuthenticated-tarkistus
 
 class ProductViewSet(ModelViewSet): # määritellään ProductViewSet-luokka, joka perii viewsets.ModelViewSet-luokan
     serializer_class = ProductSerializer # määritellään serializer_class ProductSerializer-luokaksi

@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'notes',
     'users',
     'corsheaders',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -66,7 +67,21 @@ TEMPLATES = [
     },
 ]
 
+APPEND_SLASH = False
+
+
 WSGI_APPLICATION = 'easylist.wsgi.application'
+
+# REST Framework -asetukset autehtikointia ja käyttöoikeuksia varten
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
 
 
 # Database

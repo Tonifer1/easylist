@@ -1,12 +1,12 @@
 # Tuodaan tarvittavat moduulit Django-URL-reititystä ja REST Framework -reitittimiä varten
 from django.urls import include, path
-from rest_framework import routers
+from rest_framework.routers import DefaultRouter
+from .views import CategoryViewSet # Tuodaan ProductViewSet, joka määrittelee, miten tuotteita käsitellään (CRUD-logiikka)
 
 # Luodaan oletusreititin, joka generoi automaattisesti reitit (URL-polut) ViewSet-luokille
-router = routers.DefaultRouter()
+router = DefaultRouter()
 
-# Tuodaan ProductViewSet, joka määrittelee, miten tuotteita käsitellään (CRUD-logiikka)
-from .views import CategoryViewSet
+
 
 # Rekisteröidään CategoryViewSet reitittimeen 'category'-polulla
 # - 'categories' määrittää URL-polun, jossa tämä ViewSet on käytettävissä (esim. /api/categories/)
@@ -17,6 +17,6 @@ router.register(r'categories', CategoryViewSet, basename='category')
 urlpatterns = [
     # Sisällytetään reitittimen automaattisesti generoidut URL-reitit /api/-polun alle
     # - Tämä tarkoittaa, että kaikki reitittimen reitit (kuten /api/categories/) tulevat käyttöön
-    path('api/', include(router.urls, )),
+    path('', include(router.urls, )),
 ]
 
