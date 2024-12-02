@@ -11,7 +11,7 @@ router = DefaultRouter()
 # Rekisteröidään CategoryViewSet reitittimeen 'category'-polulla
 # - 'categories' määrittää URL-polun, jossa tämä ViewSet on käytettävissä (esim. /api/categories/)
 # - basename='category' määrittää, miten reitittimen nimetyt polut rakennetaan (esim. 'category-list' ja 'category-detail')
-router.register(r'categories', CategoryViewSet, basename='category')
+router.register(r'', CategoryViewSet, basename='category')
 
 # Määritellään sovelluksen URL-määritykset
 urlpatterns = [

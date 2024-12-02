@@ -1,3 +1,5 @@
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 
 from pathlib import Path
@@ -17,6 +19,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=59),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+}
+
+
+
+
 
 # Application definition
 
@@ -31,7 +43,6 @@ INSTALLED_APPS = [
     'products',
     'categories',
     'notes',
-    'users',
     'corsheaders',
     'rest_framework_simplejwt',
 ]
@@ -72,7 +83,7 @@ APPEND_SLASH = False
 
 WSGI_APPLICATION = 'easylist.wsgi.application'
 
-# REST Framework -asetukset autehtikointia ja käyttöoikeuksia varten
+#REST Framework -asetukset autehtikointia ja käyttöoikeuksia varten
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -81,6 +92,16 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
 }
+
+'''REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+}'''
+
 
 
 
