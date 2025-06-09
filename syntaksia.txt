@@ -1,0 +1,48 @@
+*** Settings ***                   # ✅ Robot Frameworkin rakenneosa
+Library           RequestsLibrary  # ✅ Robot Frameworkin käsky, RequestsLibrary on lisäkirjasto
+
+*** Variables ***                  # ✅ Robot Frameworkin rakenneosa
+${BASE_URL}       http://127.0.0.1:8000    #  BASE_URL: Itse määritelty muuttuja (Robot-syntaksilla)
+${LOGIN_ENDPOINT}    /api/token/           #  LOGIN_ENDPOINT: Itse määritelty muuttuja
+${USERNAME}       teppo                    #  USERNAME: Itse määritelty muuttuja
+${PASSWORD}       testaaja                 #  PASSWORD: Itse määritelty muuttuja
+
+*** Test Cases ***                  # ✅ Robot Frameworkin rakenneosa
+Hae JWT Token                       #  Itse keksitty testin nimi
+    [Documentation]    Testaa kirjautumista ja access-tokenin saamista              # ✅ Robot Frameworkin sisäänrakennettu metakenttä
+    Create Session    auth    ${BASE_URL}                                           # ✅ Create Session: RequestsLibrary, "auth": Itse keksitty session-nimi
+    ${data}=    Create Dictionary    username=${USERNAME}    password=${PASSWORD}   # ✅ Create Dictionary: BuiltIn, "data": Itse keksitty muuttuja
+    ${response}=    POST On Session    auth    ${LOGIN_ENDPOINT}    json=${data}    # ✅ POST On Session: RequestsLibrary
+    Should Be Equal As Numbers    ${response.status_code}    200                    # ✅ Should Be Equal As Numbers: BuiltIn vertailukomento
+    Log    ${response.json()}                                                       # ✅ Log: BuiltIn-komento, tulostaa datan lokiin
+
+    Post: teppo testaaja http://127.0.0.1:8000/api/token/ (teppo testaaja json muodossa)
+
+
+
+
+
+
+
+
+
+
+
+
+*** Settings ***                   // Robot Frameworkin
+Library           RequestsLibrary // Robot Frameworkin
+
+*** Variables ***                //Robot Frameworkin
+${BASE_URL}       http://127.0.0.1:8000   //BASE_URL: Itse keksitty
+${LOGIN_ENDPOINT}    /api/token/         //LOGIN_ENDPOINT: Itse keksitty
+${USERNAME}       teppo                 //USERNAME: Itse keksitty
+${PASSWORD}       testaaja             //PASSWORD: Itse keksitty
+
+*** Test Cases ***  //Robot Frameworkin
+Hae JWT Token // Itse keksitty
+    [Documentation]    Testaa kirjautumista ja access-tokenin saamista //Documentation: Robot Frameworkin
+    Create Session    auth    ${BASE_URL}  //Create session: RequestsLibrary  //auth: Itse keksitty
+    ${data}=    Create Dictionary    username=${USERNAME}    password=${PASSWORD} //data: Itse keksitty
+    ${response}=    POST On Session    auth    ${LOGIN_ENDPOINT}    json=${data} //POST On Session: RequestsLibrary
+    Should Be Equal As Numbers    ${response.status_code}    200    //Should Be Equal As Numbers: BuiltIn
+    Log    ${response.json()}  //Log: BuiltIn

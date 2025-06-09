@@ -20,7 +20,18 @@ from rest_framework.permissions import IsAuthenticated  # Tuodaan IsAuthenticate
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.exceptions import NotFound
 
-class ProductViewSet(ModelViewSet): 
+class ProductViewSet(ModelViewSet):
+    serializer_class = ProductSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        productname = self.request.query_params.get('productname')
+        if productname is not None:
+            queryset = queryset.filter(product_name=productname)
+        return queryset
+
+'''class ProductViewSet(ModelViewSet): 
     serializer_class = ProductSerializer
     permission_classes = [IsAuthenticated] 
 
@@ -41,7 +52,7 @@ class ProductViewSet(ModelViewSet):
         try:
             return super().destroy(request, *args, **kwargs)
         except Product.DoesNotExist:
-            raise NotFound("Tuotetta ei löydy.")
+            raise NotFound("Tuotetta ei löydy.")'''
 
 
             

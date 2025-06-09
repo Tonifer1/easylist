@@ -33,6 +33,8 @@ SIMPLE_JWT = {
 # Application definition
 
 INSTALLED_APPS = [
+    
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +45,6 @@ INSTALLED_APPS = [
     'products',
     'categories',
     'notes',
-    'corsheaders',
     'rest_framework_simplejwt',
 ]
 
@@ -58,7 +59,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'easylist.urls'
 
