@@ -1,0 +1,12 @@
+🟨 Yhteenveto:
+Testitaso	          Robot Framework sopii?	                  Esimerkkityökalu
+Yksikkötestaus        (unit test)	❌ Ei	                    ✅ pytest, xUnit
+Integraatiotesti	 ✅ Kyllä (rajapinnan tasolla)	            ✅ Robot, Postman
+E2E-testaus	         ✅ Erinomainen	                            ✅ Robot, Cypress
+
+
+🧠 Miten tunnistaa testityypit?
+Testityyppi	           Mitä testataan	                                    Tyypillinen työkalu
+Yksikkötesti	       Yksi funktio, esim. get_product_price()	            pytest, xUnit
+Integraatiotesti	   Useampi komponentti yhdessä (esim. API + DB)     	Robot Framework, Postman
+E2E-testi	           Koko käyttäjän virta (UI + API + DB)	                Cypress, Playwright, RF (Selenium)
