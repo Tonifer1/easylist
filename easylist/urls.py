@@ -19,6 +19,8 @@ class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+# 1. React pyyntö ohjautuu tähän
+
 # Luo reititin
 router = DefaultRouter()
 router.register(r'', UserViewSet, basename='user')

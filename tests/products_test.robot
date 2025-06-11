@@ -8,8 +8,7 @@ ${LOGIN_ENDPOINT}    /api/token/
 ${USERNAME}       teppo
 ${PASSWORD}       testaaja
 ${PRODUCTS_ENDPOINT}    /api/products/
-${PRODUCTS}       tuotteet
-${ACCESTOKEN}        
+      
 
 
 
@@ -35,6 +34,6 @@ Hae tuotteet
 Ei tokenia
     [Documentation]    Testaa tuotteiden hakemista ilman kirjautumista ja tokenia
     Create Session    prod    ${BASE_URL}
-    ${response}=   GET On Session    prod    ${PRODUCTS_ENDPOINT}    
-    Should Be Equal As Numbers    ${response.status_code}    401
-    Log    ${response.json()}
+    Run Keyword And Expect Error    *401*    GET On Session    prod    ${PRODUCTS_ENDPOINT}
+    Log    Tarkistettu: API vaatii tokenin.
+

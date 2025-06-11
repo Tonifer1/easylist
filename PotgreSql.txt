@@ -1,0 +1,84 @@
+Categories
+
+CategoryId: int (Primary Key)
+
+CategoryName: nvarchar(20)
+
+ImageLink: nvarchar(200)
+*******************************
+Products
+
+ProductId: int (Primary Key)
+
+ProductName: nvarchar(40)
+
+ImageLink: nvarchar(200)
+
+CategoryId: int (Foreign Key to Categories)
+
+****************************
+
+Users
+
+UserId: int (Primary Key)
+
+FirstName: nvarchar(30)
+
+LastName: nvarchar(30)
+
+Email: nvarchar(30)
+
+**********************************
+Notes
+
+NoteId: int (Primary Key)
+
+Content: nvarchar(max)
+
+💡 1. Näkyykö tuotteen kohdalla sen kategoria?
+Kyllä. Koska Products-taulussa on CategoryId viitteenä Categories-tauluun, voit pyytää back-endistä tuotteen yhteydessä myös sen kategoriaa.
+
+→ Tämä vaatii, että DRF-serialisoija palauttaa category-tiedot tuotteen mukana.
+
+Esimerkki JSON-vasteesta tuotteesta:
+
+
+{
+  "product_id": 1,
+  "product_name": "Maito",
+  "image_link": "...",
+  "category": {
+    "category_id": 2,
+    "category_name": "Maitotuotteet"
+  }
+}
+Tätä varten sinun täytyy käyttää nested serializeria Products-serialisoijassa.
+
+🔁 2. Näenkö kategorian perusteella siihen kuuluvat tuotteet?
+Kyllä. Voit myös hakea kategorian, ja pyytää sen tuotteet mukaan.
+
+→ Tämä onnistuu, jos käytät related_name-ominaisuutta DRF:n serialisoijassa tai mallissa, esim. products.
+
+Esimerkki JSON-vaste kategoriasta tuotteineen:
+
+
+{
+  "category_id": 2,
+  "category_name": "Maitotuotteet",
+  "products": [
+    {
+      "product_id": 1,
+      "product_name": "Maito",
+      "image_link": "..."
+    },
+    {
+      "product_id": 5,
+      "product_name": "Kerma",
+      "image_link": "..."
+    }
+  ]
+}
+🔄 Yhteenveto kummin päin tämä toimii:
+Tilanne	Vaatii	Onko mahdollista?
+Näytetään tuotteen yhteydessä sen kategoria	Nested serializer ProductsSerializerissa	✅ Kyllä
+Näytetään kategoria ja sen kaikki tuotteet	CategoriesSerializerin sisällä products-lista	✅ Kyllä
