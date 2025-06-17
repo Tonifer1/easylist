@@ -1,93 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3 (Python 3.12.6 on win32)" generated="2025-06-17T13:23:57.338242" rpa="false" schemaversion="5">
-<suite id="s1" name="Get Token Test" source="C:\easylist\tests\get_token_test.robot">
-<test id="s1-t1" name="Hae JWT Token" line="13">
+<robot generator="Robot 7.3 (Python 3.12.6 on win32)" generated="2025-06-17T23:30:23.305904" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\easylist\tests">
+<suite id="s1-s1" name="Login Edge Cases Test.Robot" source="C:\easylist\tests\login_edge_cases_test.robot.robot">
+<test id="s1-s1-t1" name="Kirjaudu Väärillä Tunnuksilla" line="13">
 <kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-06-17T13:23:57.838016" level="INFO">Creating Session using : alias=auth, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg time="2025-06-17T23:30:23.796332" level="INFO">Creating Session using : alias=auth, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
 <arg>auth</arg>
 <arg>${BASE_URL}</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-06-17T13:23:57.838016" elapsed="0.000000"/>
+<status status="PASS" start="2025-06-17T23:30:23.796332" elapsed="0.000000"/>
 </kw>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-06-17T13:23:57.839016" level="INFO">${data} = {'username': 'teppo', 'password': 'testaaja'}</msg>
+<msg time="2025-06-17T23:30:23.796332" level="INFO">${data} = {'username': 'vaara', 'password': 'vaara'}</msg>
 <var>${data}</var>
-<arg>username=${USERNAME}</arg>
-<arg>password=${PASSWORD}</arg>
+<arg>username=vaara</arg>
+<arg>password=vaara</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-06-17T13:23:57.838016" elapsed="0.001000"/>
-</kw>
-<kw name="POST On Session" owner="RequestsLibrary">
-<msg time="2025-06-17T13:23:58.606972" level="INFO">POST Request : url=http://127.0.0.1:8000/api/token/ 
- path_url=/api/token/ 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '45', 'Content-Type': 'application/json'} 
- body=b'{"username": "teppo", "password": "testaaja"}' 
- </msg>
-<msg time="2025-06-17T13:23:58.606972" level="INFO">POST Response : url=http://127.0.0.1:8000/api/token/ 
- status=200, reason=OK 
- headers={'Date': 'Tue, 17 Jun 2025 10:23:58 GMT', 'Server': 'WSGIServer/0.2 CPython/3.12.6', 'Content-Type': 'application/json', 'Vary': 'Accept, origin', 'Allow': 'POST, OPTIONS', 'X-Frame-Options': 'DENY', 'Content-Length': '483', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'} 
- body={"refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1MDc2MDYzOCwiaWF0IjoxNzUwMTU1ODM4LCJqdGkiOiI0MGJkN2FmMmViOTk0NTZlODlmMDViZGE2M2Q5NGI2YSIsInVzZXJfaWQiOjJ9.MAnEElyCCeaA_y7Un8idu-9YhFc0vC2DiNwZCRG68k4","access":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTU5Mzc4LCJpYXQiOjE3NTAxNTU4MzgsImp0aSI6ImJiYzc4ZTcyZTcyNzQ4NDU5ZGFkM2IzNTY2NWVkNTIyIiwidXNlcl9pZCI6Mn0.BK3T3dgUN3evgNjeqbUT9fGm82ugGm91lXW8knfAtEE"} 
- </msg>
-<msg time="2025-06-17T13:23:58.606972" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<var>${response}</var>
-<arg>auth</arg>
-<arg>${LOGIN_ENDPOINT}</arg>
-<arg>json=${data}</arg>
-<doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2025-06-17T13:23:57.839016" elapsed="0.767956"/>
-</kw>
-<kw name="Should Be Equal As Numbers" owner="BuiltIn">
-<msg time="2025-06-17T13:23:58.606972" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;class 'str'&gt;</msg>
-<arg>${response.status_code}</arg>
-<arg>200</arg>
-<doc>Fails if objects are unequal after converting them to real numbers.</doc>
-<status status="PASS" start="2025-06-17T13:23:58.606972" elapsed="0.000000"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-06-17T13:23:58.606972" level="INFO">{'refresh': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1MDc2MDYzOCwiaWF0IjoxNzUwMTU1ODM4LCJqdGkiOiI0MGJkN2FmMmViOTk0NTZlODlmMDViZGE2M2Q5NGI2YSIsInVzZXJfaWQiOjJ9.MAnEElyCCeaA_y7Un8idu-9YhFc0vC2DiNwZCRG68k4', 'access': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTU5Mzc4LCJpYXQiOjE3NTAxNTU4MzgsImp0aSI6ImJiYzc4ZTcyZTcyNzQ4NDU5ZGFkM2IzNTY2NWVkNTIyIiwidXNlcl9pZCI6Mn0.BK3T3dgUN3evgNjeqbUT9fGm82ugGm91lXW8knfAtEE'}</msg>
-<arg>${response.json()}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-06-17T13:23:58.606972" elapsed="0.000000"/>
-</kw>
-<doc>Testaa kirjautumista ja access-tokenin saamista</doc>
-<status status="PASS" start="2025-06-17T13:23:57.837018" elapsed="0.769954"/>
-</test>
-<test id="s1-t2" name="Kirjaudu Väärillä Tunnuksilla" line="21">
-<kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-06-17T13:23:58.606972" level="INFO">Creating Session using : alias=auth, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<arg>auth</arg>
-<arg>${BASE_URL}</arg>
-<doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-06-17T13:23:58.606972" elapsed="0.000000"/>
-</kw>
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-06-17T13:23:58.606972" level="INFO">${data} = {'username': 'invalidname', 'password': 'invalidpassword'}</msg>
-<var>${data}</var>
-<arg>username=${INVALIDUSERNAME}</arg>
-<arg>password=${INVALIDPASSWORD}</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-06-17T13:23:58.606972" elapsed="0.000000"/>
+<status status="PASS" start="2025-06-17T23:30:23.796332" elapsed="0.000000"/>
 </kw>
 <kw name="Run Keyword And Expect Error" owner="BuiltIn">
 <kw name="POST On Session" owner="RequestsLibrary">
-<msg time="2025-06-17T13:23:59.334424" level="INFO">POST Request : url=http://127.0.0.1:8000/api/token/ 
+<msg time="2025-06-17T23:30:24.604438" level="INFO">POST Request : url=http://127.0.0.1:8000/api/token/ 
  path_url=/api/token/ 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '58', 'Content-Type': 'application/json'} 
- body=b'{"username": "invalidname", "password": "invalidpassword"}' 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '42', 'Content-Type': 'application/json'} 
+ body=b'{"username": "vaara", "password": "vaara"}' 
  </msg>
-<msg time="2025-06-17T13:23:59.334424" level="INFO">POST Response : url=http://127.0.0.1:8000/api/token/ 
+<msg time="2025-06-17T23:30:24.604438" level="INFO">POST Response : url=http://127.0.0.1:8000/api/token/ 
  status=401, reason=Unauthorized 
- headers={'Date': 'Tue, 17 Jun 2025 10:23:59 GMT', 'Server': 'WSGIServer/0.2 CPython/3.12.6', 'Content-Type': 'application/json', 'WWW-Authenticate': 'Bearer realm="api"', 'Vary': 'Accept, origin', 'Allow': 'POST, OPTIONS', 'X-Frame-Options': 'DENY', 'Content-Length': '63', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'} 
+ headers={'Date': 'Tue, 17 Jun 2025 20:30:24 GMT', 'Server': 'WSGIServer/0.2 CPython/3.12.6', 'Content-Type': 'application/json', 'WWW-Authenticate': 'Bearer realm="api"', 'Vary': 'Accept, origin', 'Allow': 'POST, OPTIONS', 'X-Frame-Options': 'DENY', 'Content-Length': '63', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'} 
  body={"detail":"No active account found with the given credentials"} 
  </msg>
-<msg time="2025-06-17T13:23:59.334424" level="FAIL">HTTPError: 401 Client Error: Unauthorized for url: http://127.0.0.1:8000/api/token/</msg>
+<msg time="2025-06-17T23:30:24.604438" level="FAIL">HTTPError: 401 Client Error: Unauthorized for url: http://127.0.0.1:8000/api/token/</msg>
 <arg>auth</arg>
 <arg>${LOGIN_ENDPOINT}</arg>
 <arg>json=${data}</arg>
 <doc>Sends a POST request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-06-17T13:23:58.606972" elapsed="0.727452">HTTPError: 401 Client Error: Unauthorized for url: http://127.0.0.1:8000/api/token/</status>
+<status status="FAIL" start="2025-06-17T23:30:23.796332" elapsed="0.818820">HTTPError: 401 Client Error: Unauthorized for url: http://127.0.0.1:8000/api/token/</status>
 </kw>
 <arg>*401*</arg>
 <arg>POST On Session</arg>
@@ -95,21 +43,451 @@
 <arg>${LOGIN_ENDPOINT}</arg>
 <arg>json=${data}</arg>
 <doc>Runs the keyword and checks that the expected error occurred.</doc>
-<status status="PASS" start="2025-06-17T13:23:58.606972" elapsed="0.727452"/>
+<status status="PASS" start="2025-06-17T23:30:23.796332" elapsed="0.818820"/>
 </kw>
 <doc>Kirjautuu API:iin väärillä tunnuksilla ja palauttaa 401</doc>
-<status status="PASS" start="2025-06-17T13:23:58.606972" elapsed="0.727452"/>
+<status status="PASS" start="2025-06-17T23:30:23.796332" elapsed="0.818820"/>
 </test>
-<status status="PASS" start="2025-06-17T13:23:57.338242" elapsed="1.996182"/>
+<test id="s1-s1-t2" name="Kirjaudu Ilman Tunnuksia" line="19">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:24.617159" level="INFO">Creating Session using : alias=auth, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>auth</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-06-17T23:30:24.615152" elapsed="0.002007"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-17T23:30:24.617159" level="INFO">${data} = {'username': 'password'}</msg>
+<var>${data}</var>
+<arg>username</arg>
+<arg>password</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-17T23:30:24.617159" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword And Expect Error" owner="BuiltIn">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:24.621509" level="INFO">POST Request : url=http://127.0.0.1:8000/api/token/ 
+ path_url=/api/token/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '24', 'Content-Type': 'application/json'} 
+ body=b'{"username": "password"}' 
+ </msg>
+<msg time="2025-06-17T23:30:24.621509" level="INFO">POST Response : url=http://127.0.0.1:8000/api/token/ 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Tue, 17 Jun 2025 20:30:24 GMT', 'Server': 'WSGIServer/0.2 CPython/3.12.6', 'Content-Type': 'application/json', 'Vary': 'Accept, origin', 'Allow': 'POST, OPTIONS', 'X-Frame-Options': 'DENY', 'Content-Length': '40', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'} 
+ body={"password":["This field is required."]} 
+ </msg>
+<msg time="2025-06-17T23:30:24.622516" level="FAIL">HTTPError: 400 Client Error: Bad Request for url: http://127.0.0.1:8000/api/token/</msg>
+<arg>auth</arg>
+<arg>${LOGIN_ENDPOINT}</arg>
+<arg>json=${data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-06-17T23:30:24.617159" elapsed="0.005357">HTTPError: 400 Client Error: Bad Request for url: http://127.0.0.1:8000/api/token/</status>
+</kw>
+<arg>*Client Error*</arg>
+<arg>POST On Session</arg>
+<arg>auth</arg>
+<arg>${LOGIN_ENDPOINT}</arg>
+<arg>json=${data}</arg>
+<doc>Runs the keyword and checks that the expected error occurred.</doc>
+<status status="PASS" start="2025-06-17T23:30:24.617159" elapsed="0.005357"/>
+</kw>
+<doc>Kirjautuu API:iin ilman  tunnuksia ja palauttaa 401 tai 404</doc>
+<status status="PASS" start="2025-06-17T23:30:24.615152" elapsed="0.008261"/>
+</test>
+<test id="s1-s1-t3" name="Virheellinen Kirjautuminen Ja Virheilmoitus" line="25">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:24.624424" level="INFO">Creating Session using : alias=auth, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>auth</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-06-17T23:30:24.624424" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-17T23:30:24.624424" level="INFO">${data} = {'username': 'väärä', 'password': 'väärä'}</msg>
+<var>${data}</var>
+<arg>username=väärä</arg>
+<arg>password=väärä</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-17T23:30:24.624424" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:25.313849" level="INFO">POST Request : url=http://127.0.0.1:8000/api/token/ 
+ path_url=/api/token/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '72', 'Content-Type': 'application/json'} 
+ body=b'{"username": "v\\u00e4\\u00e4r\\u00e4", "password": "v\\u00e4\\u00e4r\\u00e4"}' 
+ </msg>
+<msg time="2025-06-17T23:30:25.313849" level="INFO">POST Response : url=http://127.0.0.1:8000/api/token/ 
+ status=401, reason=Unauthorized 
+ headers={'Date': 'Tue, 17 Jun 2025 20:30:25 GMT', 'Server': 'WSGIServer/0.2 CPython/3.12.6', 'Content-Type': 'application/json', 'WWW-Authenticate': 'Bearer realm="api"', 'Vary': 'Accept, origin', 'Allow': 'POST, OPTIONS', 'X-Frame-Options': 'DENY', 'Content-Length': '63', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'} 
+ body={"detail":"No active account found with the given credentials"} 
+ </msg>
+<msg time="2025-06-17T23:30:25.313849" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>auth</arg>
+<arg>${LOGIN_ENDPOINT}</arg>
+<arg>json=${data}</arg>
+<arg>expected_status=ANY</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-17T23:30:24.624424" elapsed="0.689425"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-17T23:30:25.313849" level="INFO">401</msg>
+<arg>${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-17T23:30:25.313849" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-17T23:30:25.321106" level="INFO">{"detail":"No active account found with the given credentials"}</msg>
+<arg>${response.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-17T23:30:25.313849" elapsed="0.007257"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-06-17T23:30:25.321106" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>401</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-06-17T23:30:25.321106" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-06-17T23:30:25.321106" level="INFO">${json} = {'detail': 'No active account found with the given credentials'}</msg>
+<var>${json}</var>
+<arg>json.loads('''${response.text}''')</arg>
+<arg>modules=json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-06-17T23:30:25.321106" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-06-17T23:30:25.323112" level="INFO">${detail} = No active account found with the given credentials</msg>
+<var>${detail}</var>
+<arg>${json}</arg>
+<arg>detail</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-06-17T23:30:25.323112" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${json['detail']}</arg>
+<arg>No active account found with the given credentials</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-06-17T23:30:25.323112" elapsed="0.000000"/>
+</kw>
+<doc>Testaa että API palauttaa oikean virheilmoituksen väärillä tunnuksilla</doc>
+<status status="PASS" start="2025-06-17T23:30:24.623413" elapsed="0.699699"/>
+</test>
+<status status="PASS" start="2025-06-17T23:30:23.337592" elapsed="1.985520"/>
+</suite>
+<suite id="s1-s2" name="Products Filter Test" source="C:\easylist\tests\products_filter_test.robot">
+<test id="s1-s2-t1" name="Hae tuotteet suodatuksella" line="11">
+<kw name="Kirjaudu Ja Hae Token" owner="login_keyword_test">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:25.334412" level="INFO">Creating Session using : alias=auth, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>auth</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-06-17T23:30:25.334412" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-17T23:30:25.335411" level="INFO">${data} = {'username': 'teppo', 'password': 'testaaja'}</msg>
+<var>${data}</var>
+<arg>username=${USERNAME}</arg>
+<arg>password=${PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-17T23:30:25.335411" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:26.006378" level="INFO">POST Request : url=http://127.0.0.1:8000/api/token/ 
+ path_url=/api/token/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '45', 'Content-Type': 'application/json'} 
+ body=b'{"username": "teppo", "password": "testaaja"}' 
+ </msg>
+<msg time="2025-06-17T23:30:26.006378" level="INFO">POST Response : url=http://127.0.0.1:8000/api/token/ 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 17 Jun 2025 20:30:26 GMT', 'Server': 'WSGIServer/0.2 CPython/3.12.6', 'Content-Type': 'application/json', 'Vary': 'Accept, origin', 'Allow': 'POST, OPTIONS', 'X-Frame-Options': 'DENY', 'Content-Length': '483', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'} 
+ body={"refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1MDc5NzAyNiwiaWF0IjoxNzUwMTkyMjI2LCJqdGkiOiJhNjU1YTE4YzczNDI0MTNkYTNmYjY3YTBiYzk2MjFhNCIsInVzZXJfaWQiOjJ9.Z0GM7LlPh9Wo3S7v6dHSFl3dcmVob9BT9fCJbFk8zyI","access":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTk1NzY2LCJpYXQiOjE3NTAxOTIyMjYsImp0aSI6IjU1ZGQ3Yzg5ZTJmNjQwZDQ4ZDEyYjRhNDUxMDA0MmNiIiwidXNlcl9pZCI6Mn0.AlNNVru73d3g2Naa7fm4cvCb8NFWvy185TClFI-Rgkc"} 
+ </msg>
+<msg time="2025-06-17T23:30:26.006378" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>auth</arg>
+<arg>${LOGIN_ENDPOINT}</arg>
+<arg>json=${data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-17T23:30:25.335886" elapsed="0.670492"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.006378" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.006378" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.009195" level="INFO">${json} = {'refresh': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1MDc5NzAyNiwiaWF0IjoxNzUwMTkyMjI2LCJqdGkiOiJhNjU1YTE4YzczNDI0MTNkYTNmYjY3YTBiYzk2MjFhNCIsInVzZXJfaWQiOjJ9.Z...</msg>
+<var>${json}</var>
+<arg>json.loads('''${response.text}''')</arg>
+<arg>modules=json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.006378" elapsed="0.002817"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-06-17T23:30:26.009195" level="INFO">${ACCESTOKEN} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTk1NzY2LCJpYXQiOjE3NTAxOTIyMjYsImp0aSI6IjU1ZGQ3Yzg5ZTJmNjQwZDQ4ZDEyYjRhNDUxMDA0MmNiIiwidXNlcl9pZCI6Mn0.AlNNVru73d3g2Na...</msg>
+<var>${ACCESTOKEN}</var>
+<arg>${json}</arg>
+<arg>access</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.009195" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${ACCESTOKEN}</value>
+<status status="PASS" start="2025-06-17T23:30:26.009195" elapsed="0.000000"/>
+</return>
+<msg time="2025-06-17T23:30:26.009195" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTk1NzY2LCJpYXQiOjE3NTAxOTIyMjYsImp0aSI6IjU1ZGQ3Yzg5ZTJmNjQwZDQ4ZDEyYjRhNDUxMDA0MmNiIiwidXNlcl9pZCI6Mn0.AlNNVru73d3g2Na...</msg>
+<var>${token}</var>
+<doc>Kirjautuu API:iin ja palauttaa access-tokenin</doc>
+<status status="PASS" start="2025-06-17T23:30:25.334412" elapsed="0.674783"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:26.009195" level="INFO">Creating Session using : alias=prod, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>prod</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-06-17T23:30:26.009195" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.009195" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTk1NzY2LCJpYXQiOjE3NTAxOTIyMjYsImp0aSI6IjU1ZGQ3Yzg5ZTJmNjQwZDQ4ZDEyYjRhNDUxMDA0MmNiIiwidXNlc...</msg>
+<var>${headers}</var>
+<arg>Authorization=Bearer ${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.009195" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.009195" level="INFO">${params} = {'productname': 'Omena'}</msg>
+<var>${params}</var>
+<arg>productname=Omena</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.009195" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:26.068517" level="INFO">GET Request : url=http://127.0.0.1:8000/api/products/?productname=Omena 
+ path_url=/api/products/?productname=Omena 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTk1NzY2LCJpYXQiOjE3NTAxOTIyMjYsImp0aSI6IjU1ZGQ3Yzg5ZTJmNjQwZDQ4ZDEyYjRhNDUxMDA0MmNiIiwidXNlcl9pZCI6Mn0.AlNNVru73d3g2Naa7fm4cvCb8NFWvy185TClFI-Rgkc'} 
+ body=None 
+ </msg>
+<msg time="2025-06-17T23:30:26.068517" level="INFO">GET Response : url=http://127.0.0.1:8000/api/products/?productname=Omena 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 17 Jun 2025 20:30:26 GMT', 'Server': 'WSGIServer/0.2 CPython/3.12.6', 'Content-Type': 'application/json', 'Vary': 'Accept, origin', 'Allow': 'GET, POST, HEAD, OPTIONS', 'X-Frame-Options': 'DENY', 'Content-Length': '70', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'} 
+ body=[{"product_id":5,"product_name":"Omena","image_link":"","category":4}] 
+ </msg>
+<msg time="2025-06-17T23:30:26.068517" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>prod</arg>
+<arg>${PRODUCTS_ENDPOINT}</arg>
+<arg>params=${params}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.009195" elapsed="0.059322"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.068517" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.068517" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.068517" level="INFO">[{'product_id': 5, 'product_name': 'Omena', 'image_link': '', 'category': 4}]</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.068517" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2025-06-17T23:30:25.333411" elapsed="0.735106"/>
+</test>
+<status status="PASS" start="2025-06-17T23:30:25.326262" elapsed="0.742255"/>
+</suite>
+<suite id="s1-s3" name="Products Test" source="C:\easylist\tests\products_test.robot">
+<test id="s1-s3-t1" name="Hae tuotteet" line="16">
+<kw name="Kirjaudu Ja Hae Token" owner="login_keyword_test">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:26.068517" level="INFO">Creating Session using : alias=auth, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>auth</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-06-17T23:30:26.068517" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.068517" level="INFO">${data} = {'username': 'teppo', 'password': 'testaaja'}</msg>
+<var>${data}</var>
+<arg>username=${USERNAME}</arg>
+<arg>password=${PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.068517" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:26.731574" level="INFO">POST Request : url=http://127.0.0.1:8000/api/token/ 
+ path_url=/api/token/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '45', 'Content-Type': 'application/json'} 
+ body=b'{"username": "teppo", "password": "testaaja"}' 
+ </msg>
+<msg time="2025-06-17T23:30:26.731574" level="INFO">POST Response : url=http://127.0.0.1:8000/api/token/ 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 17 Jun 2025 20:30:26 GMT', 'Server': 'WSGIServer/0.2 CPython/3.12.6', 'Content-Type': 'application/json', 'Vary': 'Accept, origin', 'Allow': 'POST, OPTIONS', 'X-Frame-Options': 'DENY', 'Content-Length': '483', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'} 
+ body={"refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1MDc5NzAyNiwiaWF0IjoxNzUwMTkyMjI2LCJqdGkiOiI3Nzk4ODk2MGQ3M2U0NmI5YjE4MTEyMWQ4NDJjNDQ5MSIsInVzZXJfaWQiOjJ9.0eR9Z2FbIEoz8xC61B0IkskyhNXEePR3taYopZMdPe0","access":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTk1NzY2LCJpYXQiOjE3NTAxOTIyMjYsImp0aSI6IjFkMDQwOTA5ZTI1NTQzMjBhNmNlNjJjOTZmOGZkYjJiIiwidXNlcl9pZCI6Mn0.HTi7s2b7Px7drwaQyP4aPOBqP9yGATZltmpDSa5Igbs"} 
+ </msg>
+<msg time="2025-06-17T23:30:26.731574" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>auth</arg>
+<arg>${LOGIN_ENDPOINT}</arg>
+<arg>json=${data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.068517" elapsed="0.678802"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.747319" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.747319" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.747319" level="INFO">${json} = {'refresh': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1MDc5NzAyNiwiaWF0IjoxNzUwMTkyMjI2LCJqdGkiOiI3Nzk4ODk2MGQ3M2U0NmI5YjE4MTEyMWQ4NDJjNDQ5MSIsInVzZXJfaWQiOjJ9.0...</msg>
+<var>${json}</var>
+<arg>json.loads('''${response.text}''')</arg>
+<arg>modules=json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.747319" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-06-17T23:30:26.747319" level="INFO">${ACCESTOKEN} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTk1NzY2LCJpYXQiOjE3NTAxOTIyMjYsImp0aSI6IjFkMDQwOTA5ZTI1NTQzMjBhNmNlNjJjOTZmOGZkYjJiIiwidXNlcl9pZCI6Mn0.HTi7s2b7Px7drwa...</msg>
+<var>${ACCESTOKEN}</var>
+<arg>${json}</arg>
+<arg>access</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.747319" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${ACCESTOKEN}</value>
+<status status="PASS" start="2025-06-17T23:30:26.747319" elapsed="0.000000"/>
+</return>
+<msg time="2025-06-17T23:30:26.747319" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTk1NzY2LCJpYXQiOjE3NTAxOTIyMjYsImp0aSI6IjFkMDQwOTA5ZTI1NTQzMjBhNmNlNjJjOTZmOGZkYjJiIiwidXNlcl9pZCI6Mn0.HTi7s2b7Px7drwa...</msg>
+<var>${token}</var>
+<doc>Kirjautuu API:iin ja palauttaa access-tokenin</doc>
+<status status="PASS" start="2025-06-17T23:30:26.068517" elapsed="0.680808"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:26.749325" level="INFO">Creating Session using : alias=prod, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>prod</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-06-17T23:30:26.749325" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.749325" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTk1NzY2LCJpYXQiOjE3NTAxOTIyMjYsImp0aSI6IjFkMDQwOTA5ZTI1NTQzMjBhNmNlNjJjOTZmOGZkYjJiIiwidXNlc...</msg>
+<var>${headers}</var>
+<arg>Authorization=Bearer ${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.749325" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:26.807376" level="INFO">GET Request : url=http://127.0.0.1:8000/api/products/ 
+ path_url=/api/products/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMTk1NzY2LCJpYXQiOjE3NTAxOTIyMjYsImp0aSI6IjFkMDQwOTA5ZTI1NTQzMjBhNmNlNjJjOTZmOGZkYjJiIiwidXNlcl9pZCI6Mn0.HTi7s2b7Px7drwaQyP4aPOBqP9yGATZltmpDSa5Igbs'} 
+ body=None 
+ </msg>
+<msg time="2025-06-17T23:30:26.807376" level="INFO">GET Response : url=http://127.0.0.1:8000/api/products/ 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 17 Jun 2025 20:30:26 GMT', 'Server': 'WSGIServer/0.2 CPython/3.12.6', 'Content-Type': 'application/json', 'Vary': 'Accept, origin', 'Allow': 'GET, POST, HEAD, OPTIONS', 'X-Frame-Options': 'DENY', 'Content-Length': '11590', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'} 
+ body=[{"product_id":9,"product_name":"Mandariini","image_link":null,"category":4},{"product_id":10,"product_name":"Kurkku","image_link":null,"category":4},{"product_id":13,"product_name":"Peruna","image_link":null,"category":4},{"product_id":14,"product_name":"Kesäkurpitsa","image_link":null,"category":4},{"product_id":15,"product_name":"Mansikka","image_link":null,"category":5},{"product_id":16,"product_name":"Vadelma","image_link":null,"category":5},{"product_id":17,"product_name":"Mustikka","image_link":null,"category":5},{"product_id":18,"product_name":"Karhunvatukka","image_link":null,"category":5},{"product_id":19,"product_name":"Herukka","image_link":null,"category":5},{"product_id":20,"product_name":"Puolukka","image_link":null,"category":5},{"product_id":21,"product_name":"Lakka","image_link":null,"category":5},{"product_id":22,"product_name":"Kirsikka","image_link":null,"category":5},{"product_id":23,"product_name":"Boysenmarja","image_link":null,"category":5},{"product_id":24,"product_name":"Tyrni","image_link":null,"category":5},{"product_id":25,"product_name":"Maksalaatikko","image_link":null,"category":6},{"product_id":26,"product_name":"Lihapullat ja perunamuusi","image_link":null,"category":6},{"product_id":27,"product_name":"Lasagne","image_link":null,"category":6},{"product_id":28,"product_name":"Kanakastike ja riisi","image_link":null,"category":6},{"product_id":29,"product_name":"Jauhelihapihvit ja muusi","image_link":null,"category":6},{"product_id":30,"product_name":"Kasviswokki","image_link":null,"category":6},{"product_id":31,"product_name":"Paella","image_link":null,"category":6},{"product_id":32,"product_name":"Pasta Carbonara","image_link":null,"category":6},{"product_id":33,"product_name":"Lohikiusaus","image_link":null,"category":6},{"product_id":34,"product_name":"Broilerikastike","image_link":null,"category":6},{"product_id":35,"product_name":"Broilerin filee","image_link":null,"category":7},{"product_id":36,"product_name":"Broilerin koipireisi","image_link":null,"category":7},{"product_id":37,"product_name":"Broilerin siivet","image_link":null,"category":7},{"product_id":38,"product_name":"Broilerin jauheliha","image_link":null,"category":7},{"product_id":39,"product_name":"Marinoitu broileri","image_link":null,"category":7},{"product_id":40,"product_name":"Grillattu broileri","image_link":null,"category":7},{"product_id":41,"product_name":"Broileripyörykät","image_link":null,"category":7},{"product_id":42,"product_name":"Broilerin paistileike","image_link":null,"category":7},{"product_id":43,"product_name":"Broilerisuikaleet","image_link":null,"category":7},{"product_id":44,"product_name":"Savustettu broileri","image_link":null,"category":7},{"product_id":45,"product_name":"Naudan jauheliha","image_link":null,"category":8},{"product_id":46,"product_name":"Porsaan filee","image_link":null,"category":8},{"product_id":47,"product_name":"Naudan pihvi","image_link":null,"category":8},{"product_id":48,"product_name":"Porsaan kyljykset","image_link":null,"category":8},{"product_id":49,"product_name":"Lampaanpaisti","image_link":null,"category":8},{"product_id":50,"product_name":"Kananmuna","image_link":null,"category":8},{"product_id":51,"product_name":"Sianlihasuikaleet","image_link":null,"category":8},{"product_id":52,"product_name":"Naudan sisäfilee","image_link":null,"category":8},{"product_id":53,"product_name":"Broilerin jauheliha","image_link":null,"category":8},{"product_id":54,"product_name":"Naudan entrecôte","image_link":null,"category":8},{"product_id":55,"product_name":"Vaalea leipä","image_link":null,"category":9},{"product_id":56,"product_name":"Ruisleipä","image_link":null,"category":9},{"product_id":57,"product_name":"Kauraleipä","image_link":null,"category":9},{"product_id":58,"product_name":"Sämpylä","image_link":null,"category":9},{"product_id":59,"product_name":"Näkkileipä","image_link":null,"category":9},{"product_id":60,"product_name":"Reissumies","image_link":null,"category":9},{"product_id":61,"product_name":"Moniviljaleipä","image_link":null,"category":9},{"product_id":62,"product_name":"Jälkiuunileipä","image_link":null,"category":9},{"product_id":63,"product_name":"Paahtoleipä","image_link":null,"category":9},{"product_id":64,"product_name":"Hapanleipä","image_link":null,"category":9},{"product_id":65,"product_name":"Edamjuusto","image_link":null,"category":13},{"product_id":66,"product_name":"Gouda","image_link":null,"category":13},{"product_id":67,"product_name":"Emmental","image_link":null,"category":13},{"product_id":68,"product_name":"Cheddar","image_link":null,"category":13},{"product_id":69,"product_name":"Parmesaani","image_link":null,"category":13},{"product_id":70,"product_name":"Mozzarella","image_link":null,"category":13},{"product_id":71,"product_name":"Feta","image_link":null,"category":13},{"product_id":72,"product_name":"Halloumi","image_link":null,"category":13},{"product_id":73,"product_name":"Tuorejuusto","image_link":null,"category":13},{"product_id":74,"product_name":"Sinihomejuusto","image_link":null,"category":13},{"product_id":75,"product_name":"Soijarouhe","image_link":null,"category":14},{"product_id":76,"product_name":"Tofu","image_link":null,"category":14},{"product_id":77,"product_name":"Quorn","image_link":null,"category":14},{"product_id":78,"product_name":"Seitan","image_link":null,"category":14},{"product_id":79,"product_name":"Nyhtökaura","image_link":null,"category":14},{"product_id":80,"product_name":"Härkis","image_link":null,"category":14},{"product_id":81,"product_name":"Vegaanimajoneesi","image_link":null,"category":14},{"product_id":82,"product_name":"Kasviperäinen juusto","image_link":null,"category":14},{"product_id":83,"product_name":"Oatmeal","image_link":null,"category":14},{"product_id":84,"product_name":"Kasvispihvit","image_link":null,"category":14},{"product_id":85,"product_name":"Luomukananmuna","image_link":null,"category":15},{"product_id":86,"product_name":"Vapaan kanan muna","image_link":null,"category":15},{"product_id":87,"product_name":"Lattiakanalan muna","image_link":null,"category":15},{"product_id":88,"product_name":"Pieni kananmuna","image_link":null,"category":15},{"product_id":89,"product_name":"Suuri kananmuna","image_link":null,"category":15},{"product_id":90,"product_name":"Omega-3-kananmuna","image_link":null,"category":15},{"product_id":91,"product_name":"Kananmunavalkuainen","image_link":null,"category":15},{"product_id":92,"product_name":"Kuorittu kananmuna","image_link":null,"category":15},{"product_id":93,"product_name":"Savustettu kananmuna","image_link":null,"category":15},{"product_id":94,"product_name":"Paistovalmis muna","image_link":null,"category":15},{"product_id":95,"product_name":"Riisi","image_link":null,"category":16},{"product_id":96,"product_name":"Pasta","image_link":null,"category":16},{"product_id":97,"product_name":"Kaurahiutaleet","image_link":null,"category":16},{"product_id":98,"product_name":"Makaroni","image_link":null,"category":16},{"product_id":99,"product_name":"Vehnäjauho","image_link":null,"category":16},{"product_id":100,"product_name":"Suola","image_link":null,"category":17},{"product_id":101,"product_name":"Pippuri","image_link":null,"category":17},{"product_id":102,"product_name":"Paprika","image_link":null,"category":17},{"product_id":103,"product_name":"Oregano","image_link":null,"category":17},{"product_id":104,"product_name":"Kaneli","image_link":null,"category":17},{"product_id":105,"product_name":"Tonnikala","image_link":null,"category":18},{"product_id":106,"product_name":"Hernekeitto","image_link":null,"category":18},{"product_id":107,"product_name":"Tomaattimurska","image_link":null,"category":18},{"product_id":108,"product_name":"Ananaspalat","image_link":null,"category":18},{"product_id":109,"product_name":"Oliivit","image_link":null,"category":18},{"product_id":110,"product_name":"Cashew-pähkinät","image_link":null,"category":19},{"product_id":111,"product_name":"Mantelit","image_link":null,"category":19},{"product_id":112,"product_name":"Saksanpähkinät","image_link":null,"category":19},{"product_id":113,"product_name":"Maapähkinät","image_link":null,"category":19},{"product_id":114,"product_name":"Pähkinäsekoitus","image_link":null,"category":19},{"product_id":115,"product_name":"Tiskiaine","image_link":null,"category":20},{"product_id":116,"product_name":"Pyykinpesuaine","image_link":null,"category":20},{"product_id":117,"product_name":"WC-puhdistusaine","image_link":null,"category":20},{"product_id":118,"product_name":"Ikkunanpesuaine","image_link":null,"category":20},{"product_id":119,"product_name":"Lattianpesuaine","image_link":null,"category":20},{"product_id":120,"product_name":"Hammastahna","image_link":null,"category":21},{"product_id":121,"product_name":"Saippua","image_link":null,"category":21},{"product_id":122,"product_name":"Shampoo","image_link":null,"category":21},{"product_id":123,"product_name":"Deodorantti","image_link":null,"category":21},{"product_id":124,"product_name":"Vessapaperi","image_link":null,"category":21},{"product_id":125,"product_name":"Suklaa","image_link":null,"category":22},{"product_id":126,"product_name":"Karkkipussi","image_link":null,"category":22},{"product_id":127,"product_name":"Lakritsi","image_link":null,"category":22},{"product_id":128,"product_name":"Sipsit","image_link":null,"category":22},{"product_id":129,"product_name":"Popcorn","image_link":null,"category":22},{"product_id":130,"product_name":"Kivennäisvesi","image_link":null,"category":23},{"product_id":131,"product_name":"Appelsiinimehu","image_link":null,"category":23},{"product_id":132,"product_name":"Omenamehu","image_link":null,"category":23},{"product_id":133,"product_name":"Kahvi","image_link":null,"category":23},{"product_id":134,"product_name":"Tee","image_link":null,"category":23},{"product_id":135,"product_name":"Pakastepitsa","image_link":null,"category":24},{"product_id":136,"product_name":"Jäätelö","image_link":null,"category"... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg time="2025-06-17T23:30:26.807376" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>prod</arg>
+<arg>${PRODUCTS_ENDPOINT}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.749325" elapsed="0.058051"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.807376" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.807376" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.810070" level="INFO">[{'product_id': 9, 'product_name': 'Mandariini', 'image_link': None, 'category': 4}, {'product_id': 10, 'product_name': 'Kurkku', 'image_link': None, 'category': 4}, {'product_id': 13, 'product_name': 'Peruna', 'image_link': None, 'category': 4}, {'product_id': 14, 'product_name': 'Kesäkurpitsa', 'image_link': None, 'category': 4}, {'product_id': 15, 'product_name': 'Mansikka', 'image_link': None, 'category': 5}, {'product_id': 16, 'product_name': 'Vadelma', 'image_link': None, 'category': 5}, {'product_id': 17, 'product_name': 'Mustikka', 'image_link': None, 'category': 5}, {'product_id': 18, 'product_name': 'Karhunvatukka', 'image_link': None, 'category': 5}, {'product_id': 19, 'product_name': 'Herukka', 'image_link': None, 'category': 5}, {'product_id': 20, 'product_name': 'Puolukka', 'image_link': None, 'category': 5}, {'product_id': 21, 'product_name': 'Lakka', 'image_link': None, 'category': 5}, {'product_id': 22, 'product_name': 'Kirsikka', 'image_link': None, 'category': 5}, {'product_id': 23, 'product_name': 'Boysenmarja', 'image_link': None, 'category': 5}, {'product_id': 24, 'product_name': 'Tyrni', 'image_link': None, 'category': 5}, {'product_id': 25, 'product_name': 'Maksalaatikko', 'image_link': None, 'category': 6}, {'product_id': 26, 'product_name': 'Lihapullat ja perunamuusi', 'image_link': None, 'category': 6}, {'product_id': 27, 'product_name': 'Lasagne', 'image_link': None, 'category': 6}, {'product_id': 28, 'product_name': 'Kanakastike ja riisi', 'image_link': None, 'category': 6}, {'product_id': 29, 'product_name': 'Jauhelihapihvit ja muusi', 'image_link': None, 'category': 6}, {'product_id': 30, 'product_name': 'Kasviswokki', 'image_link': None, 'category': 6}, {'product_id': 31, 'product_name': 'Paella', 'image_link': None, 'category': 6}, {'product_id': 32, 'product_name': 'Pasta Carbonara', 'image_link': None, 'category': 6}, {'product_id': 33, 'product_name': 'Lohikiusaus', 'image_link': None, 'category': 6}, {'product_id': 34, 'product_name': 'Broilerikastike', 'image_link': None, 'category': 6}, {'product_id': 35, 'product_name': 'Broilerin filee', 'image_link': None, 'category': 7}, {'product_id': 36, 'product_name': 'Broilerin koipireisi', 'image_link': None, 'category': 7}, {'product_id': 37, 'product_name': 'Broilerin siivet', 'image_link': None, 'category': 7}, {'product_id': 38, 'product_name': 'Broilerin jauheliha', 'image_link': None, 'category': 7}, {'product_id': 39, 'product_name': 'Marinoitu broileri', 'image_link': None, 'category': 7}, {'product_id': 40, 'product_name': 'Grillattu broileri', 'image_link': None, 'category': 7}, {'product_id': 41, 'product_name': 'Broileripyörykät', 'image_link': None, 'category': 7}, {'product_id': 42, 'product_name': 'Broilerin paistileike', 'image_link': None, 'category': 7}, {'product_id': 43, 'product_name': 'Broilerisuikaleet', 'image_link': None, 'category': 7}, {'product_id': 44, 'product_name': 'Savustettu broileri', 'image_link': None, 'category': 7}, {'product_id': 45, 'product_name': 'Naudan jauheliha', 'image_link': None, 'category': 8}, {'product_id': 46, 'product_name': 'Porsaan filee', 'image_link': None, 'category': 8}, {'product_id': 47, 'product_name': 'Naudan pihvi', 'image_link': None, 'category': 8}, {'product_id': 48, 'product_name': 'Porsaan kyljykset', 'image_link': None, 'category': 8}, {'product_id': 49, 'product_name': 'Lampaanpaisti', 'image_link': None, 'category': 8}, {'product_id': 50, 'product_name': 'Kananmuna', 'image_link': None, 'category': 8}, {'product_id': 51, 'product_name': 'Sianlihasuikaleet', 'image_link': None, 'category': 8}, {'product_id': 52, 'product_name': 'Naudan sisäfilee', 'image_link': None, 'category': 8}, {'product_id': 53, 'product_name': 'Broilerin jauheliha', 'image_link': None, 'category': 8}, {'product_id': 54, 'product_name': 'Naudan entrecôte', 'image_link': None, 'category': 8}, {'product_id': 55, 'product_name': 'Vaalea leipä', 'image_link': None, 'category': 9}, {'product_id': 56, 'product_name': 'Ruisleipä', 'image_link': None, 'category': 9}, {'product_id': 57, 'product_name': 'Kauraleipä', 'image_link': None, 'category': 9}, {'product_id': 58, 'product_name': 'Sämpylä', 'image_link': None, 'category': 9}, {'product_id': 59, 'product_name': 'Näkkileipä', 'image_link': None, 'category': 9}, {'product_id': 60, 'product_name': 'Reissumies', 'image_link': None, 'category': 9}, {'product_id': 61, 'product_name': 'Moniviljaleipä', 'image_link': None, 'category': 9}, {'product_id': 62, 'product_name': 'Jälkiuunileipä', 'image_link': None, 'category': 9}, {'product_id': 63, 'product_name': 'Paahtoleipä', 'image_link': None, 'category': 9}, {'product_id': 64, 'product_name': 'Hapanleipä', 'image_link': None, 'category': 9}, {'product_id': 65, 'product_name': 'Edamjuusto', 'image_link': None, 'category': 13}, {'product_id': 66, 'product_name': 'Gouda', 'image_link': None, 'category': 13}, {'product_id': 67, 'product_name': 'Emmental', 'image_link': None, 'category': 13}, {'product_id': 68, 'product_name': 'Cheddar', 'image_link': None, 'category': 13}, {'product_id': 69, 'product_name': 'Parmesaani', 'image_link': None, 'category': 13}, {'product_id': 70, 'product_name': 'Mozzarella', 'image_link': None, 'category': 13}, {'product_id': 71, 'product_name': 'Feta', 'image_link': None, 'category': 13}, {'product_id': 72, 'product_name': 'Halloumi', 'image_link': None, 'category': 13}, {'product_id': 73, 'product_name': 'Tuorejuusto', 'image_link': None, 'category': 13}, {'product_id': 74, 'product_name': 'Sinihomejuusto', 'image_link': None, 'category': 13}, {'product_id': 75, 'product_name': 'Soijarouhe', 'image_link': None, 'category': 14}, {'product_id': 76, 'product_name': 'Tofu', 'image_link': None, 'category': 14}, {'product_id': 77, 'product_name': 'Quorn', 'image_link': None, 'category': 14}, {'product_id': 78, 'product_name': 'Seitan', 'image_link': None, 'category': 14}, {'product_id': 79, 'product_name': 'Nyhtökaura', 'image_link': None, 'category': 14}, {'product_id': 80, 'product_name': 'Härkis', 'image_link': None, 'category': 14}, {'product_id': 81, 'product_name': 'Vegaanimajoneesi', 'image_link': None, 'category': 14}, {'product_id': 82, 'product_name': 'Kasviperäinen juusto', 'image_link': None, 'category': 14}, {'product_id': 83, 'product_name': 'Oatmeal', 'image_link': None, 'category': 14}, {'product_id': 84, 'product_name': 'Kasvispihvit', 'image_link': None, 'category': 14}, {'product_id': 85, 'product_name': 'Luomukananmuna', 'image_link': None, 'category': 15}, {'product_id': 86, 'product_name': 'Vapaan kanan muna', 'image_link': None, 'category': 15}, {'product_id': 87, 'product_name': 'Lattiakanalan muna', 'image_link': None, 'category': 15}, {'product_id': 88, 'product_name': 'Pieni kananmuna', 'image_link': None, 'category': 15}, {'product_id': 89, 'product_name': 'Suuri kananmuna', 'image_link': None, 'category': 15}, {'product_id': 90, 'product_name': 'Omega-3-kananmuna', 'image_link': None, 'category': 15}, {'product_id': 91, 'product_name': 'Kananmunavalkuainen', 'image_link': None, 'category': 15}, {'product_id': 92, 'product_name': 'Kuorittu kananmuna', 'image_link': None, 'category': 15}, {'product_id': 93, 'product_name': 'Savustettu kananmuna', 'image_link': None, 'category': 15}, {'product_id': 94, 'product_name': 'Paistovalmis muna', 'image_link': None, 'category': 15}, {'product_id': 95, 'product_name': 'Riisi', 'image_link': None, 'category': 16}, {'product_id': 96, 'product_name': 'Pasta', 'image_link': None, 'category': 16}, {'product_id': 97, 'product_name': 'Kaurahiutaleet', 'image_link': None, 'category': 16}, {'product_id': 98, 'product_name': 'Makaroni', 'image_link': None, 'category': 16}, {'product_id': 99, 'product_name': 'Vehnäjauho', 'image_link': None, 'category': 16}, {'product_id': 100, 'product_name': 'Suola', 'image_link': None, 'category': 17}, {'product_id': 101, 'product_name': 'Pippuri', 'image_link': None, 'category': 17}, {'product_id': 102, 'product_name': 'Paprika', 'image_link': None, 'category': 17}, {'product_id': 103, 'product_name': 'Oregano', 'image_link': None, 'category': 17}, {'product_id': 104, 'product_name': 'Kaneli', 'image_link': None, 'category': 17}, {'product_id': 105, 'product_name': 'Tonnikala', 'image_link': None, 'category': 18}, {'product_id': 106, 'product_name': 'Hernekeitto', 'image_link': None, 'category': 18}, {'product_id': 107, 'product_name': 'Tomaattimurska', 'image_link': None, 'category': 18}, {'product_id': 108, 'product_name': 'Ananaspalat', 'image_link': None, 'category': 18}, {'product_id': 109, 'product_name': 'Oliivit', 'image_link': None, 'category': 18}, {'product_id': 110, 'product_name': 'Cashew-pähkinät', 'image_link': None, 'category': 19}, {'product_id': 111, 'product_name': 'Mantelit', 'image_link': None, 'category': 19}, {'product_id': 112, 'product_name': 'Saksanpähkinät', 'image_link': None, 'category': 19}, {'product_id': 113, 'product_name': 'Maapähkinät', 'image_link': None, 'category': 19}, {'product_id': 114, 'product_name': 'Pähkinäsekoitus', 'image_link': None, 'category': 19}, {'product_id': 115, 'product_name': 'Tiskiaine', 'image_link': None, 'category': 20}, {'product_id': 116, 'product_name': 'Pyykinpesuaine', 'image_link': None, 'category': 20}, {'product_id': 117, 'product_name': 'WC-puhdistusaine', 'image_link': None, 'category': 20}, {'product_id': 118, 'product_name': 'Ikkunanpesuaine', 'image_link': None, 'category': 20}, {'product_id': 119, 'product_name': 'Lattianpesuaine', 'image_link': None, 'category': 20}, {'product_id': 120, 'product_name': 'Hammastahna', 'image_link': None, 'category': 21}, {'product_id': 121, 'product_name': 'Saippua', 'image_link': None, 'category': 21}, {'product_id': 122, 'product_name': 'Shampoo', 'image_link': None, 'category': 21}, {'product_id': 123, 'product_name': 'Deodorantti', 'image_link': None, 'category': 21}, {'product_id': 124, 'product_name': 'Vessapaperi', 'image_link': None, 'category': 21}, {'product_id': 125, 'product_name': 'Suklaa', 'image_link': None, 'category': 22}, {'product_id': 126, 'product_name': 'Karkkipussi', 'image_link': None, 'category': 22}, {'product_id': 127, 'product_name': 'Lakritsi', 'image_link': None, 'category': 22}, {'product_id': 128, 'product_name': 'Sipsit', 'image_link': None, 'category': 22}, {'product_id': 129, 'product_name': 'Popcorn', 'image_link': None, 'category': 22}, {'product_id': 130, 'product_name': 'Kivennäisvesi', 'image_link': None, 'category': 23}, {'product_id': 131, 'product_name': 'Appelsiinimehu', 'image_link': None, 'category': 23}, {'product_id': 132, 'product_name': 'Omenamehu', 'image_link': None, 'category': 23}, {'product_id': 133, 'product_name': 'Kahvi', 'image_link': None, 'category': 23}, {'product_id': 134, 'product_name': 'Tee', 'image_link': None, 'category': 23}, {'product_id': 135, 'product_name': 'Pakastepitsa', 'image_link': None, 'category': 24}, {'product_id': 136, 'product_name': 'Jäätelö', 'image_link': None, 'category': 24}, {'product_id': 137, 'product_name': 'Pakastevihannekset', 'image_link': None, 'category': 24}, {'product_id': 138, 'product_name': 'Pakastekeitto', 'image_link': None, 'category': 24}, {'product_id': 139, 'product_name': 'Kalapuikot', 'image_link': None, 'category': 24}, {'product_id': 140, 'product_name': 'Grillihiilet', 'image_link': None, 'category': 25}, {'product_id': 141, 'product_name': 'Kynttilät', 'image_link': None, 'category': 25}, {'product_id': 142, 'product_name': 'Muovipussit', 'image_link': None, 'category': 25}, {'product_id': 143, 'product_name': 'Kahvinsuodatinpussit', 'image_link': None, 'category': 25}, {'product_id': 144, 'product_name': 'Talouspaperi', 'image_link': None, 'category': 25}, {'product_id': 5, 'product_name': 'Omena', 'image_link': '', 'category': 4}, {'product_id': 6, 'product_name': 'Banaanit', 'image_link': '', 'category': 4}, {'product_id': 11, 'product_name': 'Tomaatti', 'image_link': '', 'category': 4}, {'product_id': 7, 'product_name': 'Päärynä', 'image_link': '', 'category': 4}, {'product_id': 12, 'product_name': 'Porkkanat', 'image_link': '', 'category': 4}, {'product_id': 8, 'product_name': 'Appelsiini', 'image_link': '', 'category': 4}, {'product_id': 169, 'product_name': 'Piimä', 'image_link': '', 'category': 10}, {'product_id': 170, 'product_name': 'Maito', 'image_link': '', 'category': 10}, {'product_id': 171, 'product_name': 'Olut', 'image_link': '', 'category': 23}, {'product_id': 172, 'product_name': 'Omena Siideri', 'image_link': '', 'category': 23}, {'product_id': 173, 'product_name': 'Päärynä Siideri', 'image_link': '', 'category': 23}, {'product_id': 174, 'product_name': 'Long drink', 'image_link': '', 'category': 23}]</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.810070" elapsed="0.000000"/>
+</kw>
+<doc>Testaa tuotteiden hakemista</doc>
+<status status="PASS" start="2025-06-17T23:30:26.068517" elapsed="0.741553"/>
+</test>
+<test id="s1-s3-t2" name="Ei tokenia" line="24">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:26.812077" level="INFO">Creating Session using : alias=prod, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>prod</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-06-17T23:30:26.812077" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword And Expect Error" owner="BuiltIn">
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-06-17T23:30:26.812077" level="INFO">GET Request : url=http://127.0.0.1:8000/api/products/ 
+ path_url=/api/products/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-06-17T23:30:26.812077" level="INFO">GET Response : url=http://127.0.0.1:8000/api/products/ 
+ status=401, reason=Unauthorized 
+ headers={'Date': 'Tue, 17 Jun 2025 20:30:26 GMT', 'Server': 'WSGIServer/0.2 CPython/3.12.6', 'Content-Type': 'application/json', 'WWW-Authenticate': 'Bearer realm="api"', 'Vary': 'Accept, origin', 'Allow': 'GET, POST, HEAD, OPTIONS', 'X-Frame-Options': 'DENY', 'Content-Length': '58', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'} 
+ body={"detail":"Authentication credentials were not provided."} 
+ </msg>
+<msg time="2025-06-17T23:30:26.812077" level="FAIL">HTTPError: 401 Client Error: Unauthorized for url: http://127.0.0.1:8000/api/products/</msg>
+<arg>prod</arg>
+<arg>${PRODUCTS_ENDPOINT}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-06-17T23:30:26.812077" elapsed="0.004698">HTTPError: 401 Client Error: Unauthorized for url: http://127.0.0.1:8000/api/products/</status>
+</kw>
+<arg>*401*</arg>
+<arg>GET On Session</arg>
+<arg>prod</arg>
+<arg>${PRODUCTS_ENDPOINT}</arg>
+<doc>Runs the keyword and checks that the expected error occurred.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.812077" elapsed="0.004698"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-17T23:30:26.816775" level="INFO">Tarkistettu: API vaatii tokenin.</msg>
+<arg>Tarkistettu: API vaatii tokenin.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-17T23:30:26.816775" elapsed="0.000000"/>
+</kw>
+<doc>Testaa tuotteiden hakemista ilman kirjautumista ja tokenia</doc>
+<status status="PASS" start="2025-06-17T23:30:26.810070" elapsed="0.006705"/>
+</test>
+<status status="PASS" start="2025-06-17T23:30:26.068517" elapsed="0.749365"/>
+</suite>
+<status status="PASS" start="2025-06-17T23:30:23.305904" elapsed="3.513013"/>
 </suite>
 <statistics>
 <total>
-<stat pass="2" fail="0" skip="0">All Tests</stat>
+<stat pass="6" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Get Token Test" id="s1" pass="2" fail="0" skip="0">Get Token Test</stat>
+<stat name="Tests" id="s1" pass="6" fail="0" skip="0">Tests</stat>
+<stat name="Login Edge Cases Test.Robot" id="s1-s1" pass="3" fail="0" skip="0">Tests.Login Edge Cases Test.Robot</stat>
+<stat name="Products Filter Test" id="s1-s2" pass="1" fail="0" skip="0">Tests.Products Filter Test</stat>
+<stat name="Products Test" id="s1-s3" pass="2" fail="0" skip="0">Tests.Products Test</stat>
 </suite>
 </statistics>
 <errors>

@@ -1,6 +1,6 @@
 *** Settings ***
 Library           RequestsLibrary
-Resource          login_test.robot
+Resource          login_keyword_test.robot
 
 
 *** Variables ***
@@ -13,6 +13,6 @@ Hae tuotteet suodatuksella
     Create Session    prod    ${BASE_URL}
     ${headers}=    Create Dictionary    Authorization=Bearer ${token}
     ${params}=     Create Dictionary    productname=Omena
-    ${response}=   GET On Session    prod    ${PRODUCTS_ENDPOINT}   params{params}    headers=${headers}
+    ${response}=   GET On Session    prod    ${PRODUCTS_ENDPOINT}   params=${params}    headers=${headers}
     Should Be Equal As Numbers    ${response.status_code}    200
     Log    ${response.json()}

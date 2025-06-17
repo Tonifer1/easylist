@@ -9,6 +9,7 @@ ${USERNAME}       teppo
 ${PASSWORD}       testaaja
 
 
+
 *** Keywords ***
 Kirjaudu Ja Hae Token
     [Documentation]    Kirjautuu API:iin ja palauttaa access-tokenin
