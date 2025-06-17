@@ -11,3 +11,9 @@ class Product(models.Model):
         return self.product_name
 
 
+# 5. Tämä on se tietokantamalli, jota haetaan. ViewSetissä Product.objects.all() käyttää tätä mallia.
+#    Tuodaan siis myös Category-malli, joka on määritelty categories/models.py-tiedostossa.
+#    categories on itse luotu app, joka sisältää Category-mallin.
+#    Lopuksi kohti serializeria, joka muotoilee Product-mallin JSON-muotoon.-->
+
+

@@ -5,3 +5,5 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+
+# 6. Tämä muuntaa Product-olion JSON-muotoon, jonka DRF lähettää vastauksena frontendille.

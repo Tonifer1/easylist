@@ -14,7 +14,7 @@ Pyyntö sisältää:
   "password": "testaaja"
 }
 2. Backend (DRF SimpleJWT):
-Reitti /api/token/ on määritelty (Pääsovelluksen eli easylist) urls.py-tiedostossa, yleensä näin:
+Reitti /api/token/ on määritelty (Pääsovelluksen eli easylist urls.py-tiedostossa), yleensä näin:
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -22,7 +22,7 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
 ]
 Tämä TokenObtainPairView:
--tarkistaa käyttäjätunnuksen ja salasanan
+-tarkistaa käyttäjätunnuksen ja salasanan Tietokannasta
 -palauttaa access tokenin ja refresh tokenin, jos tunnistautuminen onnistuu
 
 Esimerkki vastauksesta:
@@ -92,9 +92,6 @@ Tärkeä:
 permission_classes = [IsAuthenticated] → jos käyttäjällä ei ole access-tokenia → 401 Unauthorized
 
 5. 🧠 products/models.py
-python
-Kopioi
-Muokkaa
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=40)
