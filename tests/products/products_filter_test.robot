@@ -1,6 +1,6 @@
 *** Settings ***
-Library           RequestsLibrary
-Resource          login_keyword_test.robot
+Library     RequestsLibrary
+Resource    ../login/login_keyword_test.robot
 
 
 *** Variables ***

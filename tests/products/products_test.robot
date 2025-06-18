@@ -1,7 +1,8 @@
 *** Settings ***
-Library           RequestsLibrary
-Library           Collections
-Resource          login_keyword_test.robot
+Library        RequestsLibrary
+Library        Collections
+Resource       ../login/login_keyword_test.robot
+
 
 *** Variables ***
 ${BASE_URL}       http://127.0.0.1:8000
