@@ -20,6 +20,8 @@ from rest_framework.permissions import IsAuthenticated  # Tuodaan IsAuthenticate
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.exceptions import NotFound
 from rest_framework.permissions import BasePermission, SAFE_METHODS
+from rest_framework.permissions import AllowAny
+
 
 class IsAdminOrReadOnlyForDelete(BasePermission):
     """
