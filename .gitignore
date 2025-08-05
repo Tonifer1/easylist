@@ -27,3 +27,6 @@ Thumbs.db
 # Järjestelmän tiedostot
 *.bak
 *.swp
+log.html
+output.xml
+report.html
