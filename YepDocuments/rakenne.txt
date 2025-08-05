@@ -52,4 +52,4 @@ Halutaan lisätä omia kenttiä Useriin	Tarvitaan
 🧠 Muistisääntö sinulle:
 
 Kun haluat lisätä omia kenttiä käyttäjään → tee oma models.py users-appiin.
-Kun käytät perus-Useria → et tarvitse omaa models.py:tä.
+Kun käytät perus-Useria → et tarvitse omaa models.py:tä..
