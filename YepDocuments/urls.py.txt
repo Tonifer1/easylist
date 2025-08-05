@@ -40,6 +40,8 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
-
+Tässä mallissa on käytössä ns. shortcut. Users asiat on laitettu tähän samaan pää urls.py tiedostoon. Normaalisti luodaan
+oma Users app, joka sisältää omat urls.py, views.py, models.py, serializers.py tiedostot.
+Shortcut  ei sinänsä vaikuta logiikkaan.
 
 
