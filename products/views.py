@@ -23,34 +23,41 @@ from rest_framework.permissions import BasePermission, SAFE_METHODS
 from rest_framework.permissions import AllowAny
 
 
-class IsAdminOrReadOnlyForDelete(BasePermission):
-    """
-    Salli GET, POST kaikille kirjautuneille.
-    DELETE sallitaan vain admin-käyttäjälle.
-    """
+''' class IsAdminOrReadOnlyForDelete(BasePermission):
+#     """
+#     Salli GET, POST kaikille kirjautuneille.
+#     DELETE sallitaan vain admin-käyttäjälle.
+#     """
 
-    def has_permission(self, request, view):
-        # Kaikki kirjautuneet saavat tehdä GET, POST, PUT jne.
-        if request.method in SAFE_METHODS or request.method in ['POST', 'PUT', 'PATCH']:
-            return request.user.is_authenticated
+#     def has_permission(self, request, view):
+#         # Kaikki kirjautuneet saavat tehdä GET, POST, PUT jne.
+#         if request.method in SAFE_METHODS or request.method in ['POST', 'PUT', 'PATCH']:
+#             return request.user.is_authenticated
 
-        # DELETE sallitaan vain admin-käyttäjälle
-        if request.method == 'DELETE':
-            return request.user.is_staff
+#         # DELETE sallitaan vain admin-käyttäjälle
+#         if request.method == 'DELETE':
+#             return request.user.is_staff
 
-        return False
+        return False ''' 
 
 
 class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
-    permission_classes = [IsAdminOrReadOnlyForDelete]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         queryset = Product.objects.all()
         productname = self.request.query_params.get('productname')
+        category_id = self.request.query_params.get('category')  
+
         if productname is not None:
             queryset = queryset.filter(product_name=productname)
+
+        if category_id is not None:
+            queryset = queryset.filter(category_id=category_id) 
+
         return queryset
+
     
 '''
 | Koodi           | Selitys                                          |

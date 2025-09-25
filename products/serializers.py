@@ -2,6 +2,7 @@ from rest_framework import serializers # tuodaan serializers-moduuli, jonka avul
 from .models import Product
 
 class ProductSerializer(serializers.ModelSerializer):
+    category_name = serializers.CharField(source="category.category_name", read_only=True)
     class Meta:
         model = Product
         fields = '__all__'
