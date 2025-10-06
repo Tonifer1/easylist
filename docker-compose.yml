@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: easylist-db
+    restart: always
+    environment:
+      POSTGRES_DB: easylist
+      POSTGRES_USER: easyuser
+      POSTGRES_PASSWORD: easypassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: .
+    container_name: easylist-backend
+    restart: always
+    command: >
+      sh -c "python manage.py migrate &&
+             gunicorn easylist.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DB_NAME: easylist
+      DB_USER: easyuser
+      DB_PASSWORD: easypassword
+      DB_HOST: db
+      DB_PORT: 5432
+
+volumes:
+  postgres_data:

@@ -1,5 +1,6 @@
 import logging
 logging.basicConfig(level=logging.DEBUG)
+import os 
 
 
 from pathlib import Path
@@ -120,11 +121,11 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'easylist',  # Tietokannan nimi, jonka loit aiemmin
-        'USER': 'postgres',  # PostgreSQL-käyttäjänimi
-        'PASSWORD': '12345678',  # PostgreSQL-salasana
-        'HOST': 'localhost',  # PostgreSQL-palvelimen osoite
-        'PORT': '5432',  # PostgreSQL-portti
+        'NAME': os.environ.get('DB_NAME', 'easylist'),
+        'USER': os.environ.get('DB_USER', 'easyuser'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'easypassword'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
 
