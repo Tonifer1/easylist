@@ -1,4 +1,4 @@
-version: "3.9"
+
 
 services:
   db:
@@ -33,6 +33,19 @@ services:
       DB_PASSWORD: easypassword
       DB_HOST: db
       DB_PORT: 5432
+
+
+  frontend:
+    build:
+      context: ../easylistReact        # polku React-projektiin
+    container_name: easylist-frontend
+    restart: always
+    ports:
+      - "4173:4173"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000
 
 volumes:
   postgres_data:
