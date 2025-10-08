@@ -32,3 +32,14 @@ output.xml
 report.html
 
 documents/
+
+
+.env
+.env.*
+
+# Django / secrets
+*.log
+*.pot
+*.pyc
+*.pyo
+db.sqlite3
