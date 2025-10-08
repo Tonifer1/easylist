@@ -5,10 +5,9 @@ services:
     image: postgres:15
     container_name: easylist-db
     restart: always
-    environment:
-      POSTGRES_DB: easylist
-      POSTGRES_USER: easyuser
-      POSTGRES_PASSWORD: easypassword
+    env_file:
+    - .env
+    
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
