@@ -1,9 +1,8 @@
 import logging
 logging.basicConfig(level=logging.DEBUG)
 import os 
-
-
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -12,13 +11,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-43@k&0b5&ljr6yfe-(^-h*8u^%p)@_^ho%v2$a7i&s(g2c^==_'
+load_dotenv()
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+# Haetaan teksti ja pilkotaan se pilkun kohdalta listaksi. 
+# Jos muuttujaa ei löydy, käytetään tyhjää listaa oletuksena.
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
 
 from datetime import timedelta
 
@@ -26,9 +25,6 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=59),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
-
-
-
 
 
 # Application definition
@@ -128,9 +124,6 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
-
-
-
 
 
 # Password validation

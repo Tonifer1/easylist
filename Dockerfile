@@ -7,19 +7,25 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# 2. Asetetaan työskentelykansio konttiin. WORKDIR /app → kaikki komennot ajetaan tästä hakemistosta.
+# 3. Asetetaan työskentelykansio konttiin. WORKDIR /app → kaikki komennot ajetaan tästä hakemistosta.
+# Tämä luo Dockerin sisälle hakemiston /app, johon kaikki projektitiedostot menevät.
+# Se on siis kontissa oleva “virtuaalikansio”.
 WORKDIR /app
 
-# 3. Kopioidaan riippuvuudet ja asennetaan ne. → Asennetaan paketit erikseen, 
+# Kaikki seuraavat komennot (COPY, RUN, CMD jne.) ajetaan tästä hakemistosta käsin.
+
+# 4. Kopioidaan riippuvuudet ja asennetaan ne. → Asennetaan paketit erikseen, 
 #jotta Docker osaa käyttää välimuistia (nopeuttaa buildeja).
+#Ainoa asia, jolla on merkitystä, on että requirements.txt on ajan tasalla — koska se kertoo Dockerille, mitä kirjastoja asentaa.
+#(.) polussa =   Nykyinen työhakemisto kontissa (tässä /app)
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 4. Kopioidaan koko projektin lähdekoodi konttiin
+# 5. Kopioidaan koko projektin loppu lähdekoodi konttiin
 COPY . .
 
-# 5. Altistetaan portti (Django runserver tai gunicorn kuuntelee tätä)→ DRF palvelee portissa 8000.
+# 6. Altistetaan portti (Django runserver tai gunicorn kuuntelee tätä)→ DRF palvelee portissa 8000.
 EXPOSE 8000
 
-# 6. Käynnistyskomento gunicornilla. → Tuotantoon sopiva serveri, joka osaa palvella Djangoa.
+# 7. Käynnistyskomento gunicornilla. → Tuotantoon sopiva serveri, joka osaa palvella Djangoa.
 CMD ["gunicorn", "easylist.wsgi:application", "--bind", "0.0.0.0:8000"]

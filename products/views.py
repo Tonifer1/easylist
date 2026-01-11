@@ -60,11 +60,11 @@ class ProductViewSet(ModelViewSet):
 
     
 '''
-| Koodi           | Selitys                                          |
-| --------------- | ------------------------------------------------ |
-| ('productname') | URL-parametrin nimi (query string)               |
-|   productname   | Python-muuttuja, johon URL-parametri talletetaan |
-| `product_name`  | Tietokannan (models.py) kenttä                   |
+| Koodi           | Selitys                                                                         |
+| --------------- | --------------------------------------------------------------------------------|
+| ('productname') | URL-parametrin nimi (query string)(Reactista)                                   |
+|   productname   | Python-muuttuja, johon URL-parametri talletetaan(Funktiossa itse annettu nimi)  |
+| `product_name`  | Tietokannan (models.py) kenttä itse annettu nimi                                |
 '''
     
 # 4.

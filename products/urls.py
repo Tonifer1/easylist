@@ -9,7 +9,7 @@ from .views import ProductViewSet
 #3. 
 # Api pyyntö get all products esimerkissä:
 # Tullaan tänne (Huom! router pitää määritellä jokaisessa kohdassa, jossa halutaan käyttää ViewSetiä) Myös esim.Categories.
-# Rekisteröidään ProductViewSet reitittimeen 'products'-polulla
+# ProductViewSet rekisteröidään reitittimeen 'products'-polulla
 # 'products' määrittää URL-polun, jossa tämä ViewSet on käytettävissä (esim. /api/products/)
 #  basename='product' määrittää, miten reitittimen nimetyt polut rakennetaan (esim. 'product-list' ja 'product-detail')
 router = DefaultRouter()
